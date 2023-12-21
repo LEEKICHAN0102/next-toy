@@ -1,21 +1,17 @@
 import { connectDB } from "/util/database.js"
-import Link from "next/link";
+import ListItem from "./ListItem";
 
 export default async function List() {
   const db = (await connectDB).db('forum');
-  const result = await db.collection('post').find().toArray();
+  let result = await db.collection('post').find().toArray();
+  result = result.map((e)=>{
+    e._id = e._id.toString();
+    return e;
+  })
 
   return (
     <div className="list-bg">
-      {result.map((e,i)=> (
-        <div className="list-item" key={i}>
-          <Link href={`/detail/${result[i]._id}`}>
-            <h4>{result[i].title}</h4>
-          </Link>
-          <Link href={`/edit/${result[i]._id}`}>⭐</Link>
-          <p>{result[i].content}</p>
-        </div>
-      ))}
+      <ListItem result={result} />
     </div>
   )
 }
