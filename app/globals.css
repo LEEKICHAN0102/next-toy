@@ -9,6 +9,10 @@
   margin-bottom: 5px;
   box-shadow: rgb(224, 224, 224) 0px 2px 4px 0px;
 }
+.list-item{
+  transition: all 1s;
+  opacity: 1;
+}
 .list-item h4 {
   font-size: 20px;
   font-weight: 800;
@@ -51,4 +55,4 @@ a {
 }
 .logo {
   font-weight: bold;
-} 
+}

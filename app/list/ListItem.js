@@ -10,8 +10,14 @@ export default function ListItem({result}) {
             <h4>{result[i].title}</h4>
           </Link>
           <Link href={`/edit/${result[i]._id}`}>🖊</Link>
-          <span onClick={()=>{
+          <span onClick={(e)=>{
             fetch("/api/post/delete" , { method: "DELETE", body: result[i]._id }) // Object => | JSON.stringify() // print: JSON.parse()
+            .then(()=>{
+              e.target.parentElement.style.opacity = 0;
+              setTimeout(()=> {
+                e.target.parentElement.style.display ="none"
+              } ,1000)
+            })
           }}>❌</span>
           <p>{result[i].content}</p>
         </div>
@@ -19,3 +25,6 @@ export default function ListItem({result}) {
     </>
   )
 }
+
+// use dynamic Routes = URL parameter (request.query)
+// use Query String = request.query | $REGEXP

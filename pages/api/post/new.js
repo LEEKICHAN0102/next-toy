@@ -7,7 +7,7 @@ export default async function handler(request, response){
       const result = await db.collection("post").insertOne(request.body);
       response.status(200).redirect("/list");
     } catch(error){
-      response.status(500).json(error);
+      return response.status(500).json(error);
     }
   }
 }
