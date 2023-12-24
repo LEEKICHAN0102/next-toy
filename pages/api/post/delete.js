@@ -15,7 +15,12 @@ export default async function handler(request, response) {
         const db = (await connectDB).db("forum");
         const result = await db.collection("post").deleteOne({ _id :new ObjectId(request.body) });
         response.status(200).json();
-      }
+      } 
+      // else if (session.user.role === "admin"){
+      //   const db = (await connectDB).db("forum");
+      //   const result = await db.collection("post").deleteOne({ _id :new ObjectId(request.body) });
+      //   response.status(200).json();
+      // } role-based
     } catch(error){
       return response.status(500).json(error);
     }

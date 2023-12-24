@@ -18,9 +18,10 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="navbar"> 
+        <div className="navbar">
           <Link href="/" className="logo">대충 블로그</Link> 
           <Link href="/list">List</Link>
+          <Link href="/write">write</Link>
           { 
             session 
             ? <span>{session.user.name} <LogOutBtn/> </span> 
