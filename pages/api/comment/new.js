@@ -8,13 +8,13 @@ export default async function handler(request, response){
   if(request.method === "POST"){
     request.body = JSON.parse(request.body);
     let userComment = {
-      content : request.body,
+      content : request.body.comment,
       parent : ObjectId(request.body._id),
       author : session.user.email,
     }
 
     const db = (await connectDB).db("forum");
     const result  = await db.collection("comment").insertOne(userComment);
-    response.status(200).json("댓글 작성 완료");
+    response.status(200).json("댓글 작성");
   }
 }
